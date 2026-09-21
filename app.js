@@ -1,19 +1,30 @@
 /**
  * Malik Mohmmad Ausaib — Student Workspace & Digital Identity
- * Interactive Logic: Tactile micro-interactions, IST clock, theme switcher,
- * expandable project ledger, sticky notes, keyboard shortcuts.
+ * Interactive Logic:
+ * - Desktop ↔ Mobile presentation mode switcher (AUTO / DESKTOP / MOBILE)
+ * - Mobile editorial navigation drawer overlay
+ * - Tactile micro-interactions & dual email copy handlers
+ * - Live Indian Standard Time (IST) clock for Kattankulathur, Chennai
+ * - Theme switcher (Paper ⇄ Obsidian Ink)
+ * - Project archive accordion (touch-optimized)
+ * - Keyboard navigation & student sticky scratchpad
  * SRM KTR • 3rd Semester
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const STUDENT_EMAIL = 'malik.ausaib@srmktr.edu.in';
+  const PERSONAL_EMAIL = 'malikausaib07@gmail.com';
+  const STUDENT_EMAIL = 'ma1533@srmist.edu.in';
 
+  const htmlRoot = document.documentElement;
+
+  // ==========================================================================
   // 1. Live IST Clock (Kattankulathur, Chennai)
+  // ==========================================================================
   const liveTimeEl = document.getElementById('live-time');
+  const mobLiveTimeEl = document.getElementById('mob-live-time');
+
   function updateISTClock() {
-    if (!liveTimeEl) return;
     const now = new Date();
-    // Format to Indian Standard Time (UTC+5:30)
     const options = {
       timeZone: 'Asia/Kolkata',
       hour12: false,
@@ -23,15 +34,22 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     try {
       const istString = new Intl.DateTimeFormat('en-GB', options).format(now);
-      liveTimeEl.textContent = `${istString} IST`;
+      const text = `${istString} IST`;
+      if (liveTimeEl) liveTimeEl.textContent = text;
+      if (mobLiveTimeEl) mobLiveTimeEl.textContent = text;
     } catch {
-      liveTimeEl.textContent = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')} IST`;
+      const pad = (n) => n.toString().padStart(2, '0');
+      const text = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())} IST`;
+      if (liveTimeEl) liveTimeEl.textContent = text;
+      if (mobLiveTimeEl) mobLiveTimeEl.textContent = text;
     }
   }
   updateISTClock();
   setInterval(updateISTClock, 1000);
 
+  // ==========================================================================
   // 2. Tactile Notification Banner
+  // ==========================================================================
   const banner = document.getElementById('banner');
   const bannerText = document.getElementById('banner-text');
   let bannerTimeout;
@@ -46,12 +64,113 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3200);
   }
 
-  // 3. Theme Toggle (Paper ⇄ Obsidian Ink)
+  // ==========================================================================
+  // 3. Desktop ↔ Mobile Presentation Mode Switcher
+  // ==========================================================================
+  const viewModeControl = document.getElementById('view-mode-control');
+  const viewBtns = viewModeControl ? viewModeControl.querySelectorAll('.view-btn') : [];
+
+  // Modes: 'auto', 'desktop', 'mobile'
+  const savedViewMode = localStorage.getItem('malik_view_mode') || 'auto';
+  applyViewMode(savedViewMode);
+
+  function applyViewMode(mode) {
+    htmlRoot.setAttribute('data-view-mode', mode);
+    localStorage.setItem('malik_view_mode', mode);
+
+    viewBtns.forEach(btn => {
+      if (btn.getAttribute('data-mode') === mode) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+      } else {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      }
+    });
+
+    const modeNames = {
+      auto: 'AUTO (Adapts to device viewport)',
+      desktop: 'DESKTOP (Editorial wide layout)',
+      mobile: 'MOBILE (Deliberate touch layout)'
+    };
+    if (document.readyState === 'complete') {
+      showBanner(`Presentation Mode: ${modeNames[mode] || mode.toUpperCase()}`);
+    }
+  }
+
+  viewBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selectedMode = btn.getAttribute('data-mode');
+      applyViewMode(selectedMode);
+    });
+  });
+
+  // ==========================================================================
+  // 4. Mobile Editorial Navigation Drawer Overlay
+  // ==========================================================================
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+  const mobileNavClose = document.getElementById('mobile-nav-close');
+  const mobileNavLinks = document.querySelectorAll('.mob-link');
+
+  function openMobileNav() {
+    if (!mobileNavOverlay) return;
+    mobileNavOverlay.classList.add('open');
+    mobileNavOverlay.setAttribute('aria-hidden', 'false');
+    if (mobileMenuToggle) {
+      mobileMenuToggle.setAttribute('aria-expanded', 'true');
+      mobileMenuToggle.classList.add('is-active');
+    }
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileNav() {
+    if (!mobileNavOverlay) return;
+    mobileNavOverlay.classList.remove('open');
+    mobileNavOverlay.setAttribute('aria-hidden', 'true');
+    if (mobileMenuToggle) {
+      mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      mobileMenuToggle.classList.remove('is-active');
+    }
+    document.body.style.overflow = '';
+  }
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = mobileNavOverlay && mobileNavOverlay.classList.contains('open');
+      if (isOpen) {
+        closeMobileNav();
+      } else {
+        openMobileNav();
+      }
+    });
+  }
+
+  if (mobileNavClose) {
+    mobileNavClose.addEventListener('click', closeMobileNav);
+  }
+
+  if (mobileNavOverlay) {
+    mobileNavOverlay.addEventListener('click', (e) => {
+      if (e.target === mobileNavOverlay) {
+        closeMobileNav();
+      }
+    });
+  }
+
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileNav();
+    });
+  });
+
+  // ==========================================================================
+  // 5. Theme Toggle (Paper ⇄ Obsidian Ink)
+  // ==========================================================================
   const themeToggleBtn = document.getElementById('theme-toggle');
   const toggleModeText = document.querySelector('.toggle-mode-text');
-  const htmlRoot = document.documentElement;
 
-  // Load saved theme or default to 'paper'
   const savedTheme = localStorage.getItem('malik_theme') || 'paper';
   setTheme(savedTheme);
 
@@ -74,30 +193,56 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggleBtn.addEventListener('click', toggleTheme);
   }
 
-  // 4. Copy Email Handler
-  function copyEmail() {
-    navigator.clipboard.writeText(STUDENT_EMAIL)
-      .then(() => {
-        showBanner(`Email copied to clipboard: ${STUDENT_EMAIL}`);
-        const label = document.getElementById('copy-btn-label');
-        if (label) {
-          label.textContent = 'COPIED!';
-          setTimeout(() => {
-            label.textContent = 'COPY ADDRESS';
-          }, 2500);
-        }
-      })
-      .catch(() => {
-        showBanner(`Address: ${STUDENT_EMAIL}`);
-      });
+  // ==========================================================================
+  // 6. Copy Email Handlers (Personal & Student)
+  // ==========================================================================
+  function copyTextToClipboard(text, successMessage, buttonEl) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          showBanner(successMessage);
+          if (buttonEl) {
+            const originalText = buttonEl.innerHTML;
+            buttonEl.classList.add('copied');
+            const label = buttonEl.querySelector('.copy-label') || buttonEl.querySelector('.copy-text');
+            if (label) label.textContent = 'COPIED!';
+            setTimeout(() => {
+              buttonEl.classList.remove('copied');
+              buttonEl.innerHTML = originalText;
+            }, 2400);
+          }
+        })
+        .catch(() => {
+          showBanner(`Address: ${text}`);
+        });
+    } else {
+      showBanner(`Address: ${text}`);
+    }
   }
 
-  const copyEmailBtn = document.getElementById('copy-email-btn');
-  const quickEmailCopy = document.getElementById('quick-email-copy');
-  if (copyEmailBtn) copyEmailBtn.addEventListener('click', copyEmail);
-  if (quickEmailCopy) quickEmailCopy.addEventListener('click', copyEmail);
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const targetText = btn.getAttribute('data-copy');
+      const isStudent = targetText.includes('srmist.edu.in');
+      const msg = isStudent
+        ? `Student email copied: ${targetText}`
+        : `Personal email copied: ${targetText}`;
+      copyTextToClipboard(targetText, msg, btn);
+    });
+  });
 
-  // 5. Interactive Student Sticky Scratchpad Thoughts
+  const quickEmailCopy = document.getElementById('quick-email-copy');
+  if (quickEmailCopy) {
+    quickEmailCopy.addEventListener('click', () => {
+      const email = quickEmailCopy.getAttribute('data-email') || PERSONAL_EMAIL;
+      copyTextToClipboard(email, `Email copied: ${email}`, quickEmailCopy);
+    });
+  }
+
+  // ==========================================================================
+  // 7. Interactive Student Sticky Scratchpad
+  // ==========================================================================
   const studentThoughts = [
     "Currently in 3rd semester at SRM KTR. Untangling graph traversal recursion, surviving lab records, and building this website with zero bloated UI libraries.",
     "Campus note: Kattankulathur is humid today. Spent 2 hours debugging why an array overflow broke a binary search implementation.",
@@ -124,8 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
     scratchpadText.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
   }
 
-  // 6. Project Archive Accordion Toggle
-  window.toggleEntryDetails = function(button) {
+  // ==========================================================================
+  // 8. Project Archive Accordion (Touch + Click)
+  // ==========================================================================
+  window.toggleEntryDetails = function (button) {
     const article = button.closest('.archive-entry');
     if (!article) return;
     const drawer = article.querySelector('.entry-drawer');
@@ -137,17 +284,33 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isOpen) {
       drawer.style.maxHeight = '0px';
       button.setAttribute('aria-expanded', 'false');
+      article.classList.remove('is-expanded');
       if (symbol) symbol.textContent = '+';
       if (btnText) btnText.textContent = 'EXPLORE DETAILS';
     } else {
       drawer.style.maxHeight = drawer.scrollHeight + 'px';
       button.setAttribute('aria-expanded', 'true');
+      article.classList.add('is-expanded');
       if (symbol) symbol.textContent = '−';
       if (btnText) btnText.textContent = 'COLLAPSE';
     }
   };
 
-  // 7. Subtle Custom Dot Cursor
+  document.querySelectorAll('.archive-entry').forEach(entry => {
+    const mainRow = entry.querySelector('.entry-main-row');
+    const btn = entry.querySelector('.entry-expand-btn');
+    if (mainRow && btn) {
+      mainRow.addEventListener('click', (e) => {
+        if (!e.target.closest('button') && !e.target.closest('a')) {
+          toggleEntryDetails(btn);
+        }
+      });
+    }
+  });
+
+  // ==========================================================================
+  // 9. Subtle Custom Dot Cursor (Fine Pointer Only)
+  // ==========================================================================
   const cursor = document.getElementById('cursor');
   const cursorDot = document.getElementById('cursor-dot');
 
@@ -171,7 +334,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateCursor();
 
-    // Enlarge cursor on interactive elements
     const interactives = document.querySelectorAll('a, button, input, textarea, .archive-entry, .ledger-row');
     interactives.forEach(el => {
       el.addEventListener('mouseenter', () => {
@@ -187,7 +349,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 8. Minimalist Contact Form Handler
+  // ==========================================================================
+  // 10. Minimalist Contact Form Handler
+  // ==========================================================================
   const contactForm = document.getElementById('student-contact-form');
   const formToast = document.getElementById('form-toast');
 
@@ -204,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
         if (formToast) {
-          formToast.textContent = 'Transmission logged. Thank you! Malik will check this during his lecture break.';
+          formToast.textContent = 'Transmission logged. Thank you! Malik will check this during his lecture break at SRM KTR.';
           formToast.style.display = 'block';
         }
         contactForm.reset();
@@ -217,9 +381,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 9. Keyboard Navigation Shortcuts
+  // ==========================================================================
+  // 11. Keyboard Shortcuts
+  // ==========================================================================
   document.addEventListener('keydown', (e) => {
-    // Ignore if typing in an input or textarea
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
       return;
     }
@@ -229,9 +394,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (key === 'T') {
       toggleTheme();
     } else if (key === 'C') {
-      copyEmail();
+      copyTextToClipboard(PERSONAL_EMAIL, `Personal email copied: ${PERSONAL_EMAIL}`);
+    } else if (key === 'M') {
+      const currentMode = htmlRoot.getAttribute('data-view-mode') || 'auto';
+      const modeCycle = { auto: 'desktop', desktop: 'mobile', mobile: 'auto' };
+      applyViewMode(modeCycle[currentMode] || 'auto');
     } else if (key === 'ESCAPE') {
-      // Close all open project drawers
+      closeMobileNav();
       document.querySelectorAll('.archive-entry').forEach(entry => {
         const btn = entry.querySelector('.entry-expand-btn');
         if (btn && btn.getAttribute('aria-expanded') === 'true') {

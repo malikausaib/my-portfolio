@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="paper">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Malik Mohmmad Ausaib — Student Index • SRM KTR (3rd Sem)</title>
-  <meta name="description" content="Personal student archive & digital workspace of Malik Mohmmad Ausaib, 3rd semester undergraduate at SRM Institute of Science and Technology, Kattankulathur." />
-  <meta name="keywords" content="Malik Mohmmad Ausaib, SRM KTR, SRM Institute of Science and Technology, 3rd Semester, Student Portfolio, Editorial Web, Computer Science" />
+  <meta name="description"
+    content="Personal student archive & digital workspace of Malik Mohmmad Ausaib, 3rd semester undergraduate at SRM Institute of Science and Technology, Kattankulathur." />
+  <meta name="keywords"
+    content="Malik Mohmmad Ausaib, SRM KTR, SRM Institute of Science and Technology, 3rd Semester, Student Portfolio, Editorial Web, Computer Science" />
   <meta name="author" content="Malik Mohmmad Ausaib" />
 
   <!-- Distinctive Typography: Syne (Display), Newsreader (Editorial Serif), Space Mono (Technical Data), Plus Jakarta Sans (Reading) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@600;700;800&display=swap"
+    rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <!-- Custom Subtle Cursor Follower -->
   <div class="custom-cursor" id="cursor" aria-hidden="true"></div>
@@ -38,20 +44,143 @@
     </div>
 
     <div class="bar-col right-col">
+      <!-- Desktop / Mobile Presentation Mode Switcher -->
+      <div class="view-mode-control" id="view-mode-control" role="group" aria-label="Device presentation mode switcher">
+        <span class="view-mode-label">VIEW:</span>
+        <button type="button" class="view-btn active" data-mode="auto"
+          title="Automatic viewport responsiveness">AUTO</button>
+        <button type="button" class="view-btn" data-mode="desktop" title="Desktop editorial layout">DESK</button>
+        <button type="button" class="view-btn" data-mode="mobile" title="Mobile deliberate layout">MOB</button>
+      </div>
+
+      <!-- Theme Switcher -->
       <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Paper / Ink Theme">
         <span class="toggle-mode-text">MODE: PAPER</span>
         <span class="toggle-icon">◑</span>
       </button>
 
+      <!-- Desktop Quick Jump Links -->
       <nav class="quick-nav" aria-label="Quick jump">
         <a href="#context" class="q-link">01.CONTEXT</a>
         <a href="#ledger" class="q-link">02.LEDGER</a>
         <a href="#archive" class="q-link">03.ARCHIVE</a>
         <a href="#tools" class="q-link">04.INDEX</a>
-        <a href="#dispatch" class="q-link">05.SAY HELLO</a>
+        <a href="#dispatch" class="q-link">05.DISPATCH</a>
       </nav>
+
+      <!-- Mobile Menu Trigger Button -->
+      <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Navigation Index" aria-expanded="false"
+        aria-controls="mobile-nav-overlay">
+        <span class="menu-burger-box">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </span>
+        <span class="menu-btn-label">MENU</span>
+      </button>
     </div>
   </header>
+
+  <!-- Mobile Editorial Navigation Overlay Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-label="Mobile Navigation Index">
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-id">
+          <span class="mono-label">[INDEX // DISPATCH]</span>
+          <span class="mobile-id-name">MALIK MOHMMAD AUSAIB</span>
+          <span class="mobile-id-sub">3RD SEM • SRM KTR</span>
+        </div>
+        <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation overlay">
+          <span class="close-label">CLOSE</span>
+          <span class="close-symbol">✕</span>
+        </button>
+      </div>
+
+      <nav class="mobile-nav-links" id="mobile-menu-links">
+        <a href="#context" class="mob-link">
+          <span class="mob-link-num">01</span>
+          <div class="mob-link-text">
+            <span class="mob-link-title">THE CONTEXT</span>
+            <span class="mob-link-meta">Authentic undergraduate reality</span>
+          </div>
+          <span class="mob-arrow">→</span>
+        </a>
+
+        <a href="#ledger" class="mob-link">
+          <span class="mob-link-num">02</span>
+          <div class="mob-link-text">
+            <span class="mob-link-title">ACADEMIC LEDGER</span>
+            <span class="mob-link-meta">Semester logbook & curriculum</span>
+          </div>
+          <span class="mob-arrow">→</span>
+        </a>
+
+        <a href="#archive" class="mob-link">
+          <span class="mob-link-num">03</span>
+          <div class="mob-link-text">
+            <span class="mob-link-title">WORK ARCHIVE</span>
+            <span class="mob-link-meta">Selected student prototypes</span>
+          </div>
+          <span class="mob-arrow">→</span>
+        </a>
+
+        <a href="#tools" class="mob-link">
+          <span class="mob-link-num">04</span>
+          <div class="mob-link-text">
+            <span class="mob-link-title">TECHNICAL INDEX</span>
+            <span class="mob-link-meta">Languages, tools & coursework</span>
+          </div>
+          <span class="mob-arrow">→</span>
+        </a>
+
+        <a href="#dispatch" class="mob-link">
+          <span class="mob-link-num">05</span>
+          <div class="mob-link-text">
+            <span class="mob-link-title">DISPATCH / CONTACT</span>
+            <span class="mob-link-meta">Direct student communication</span>
+          </div>
+          <span class="mob-arrow">→</span>
+        </a>
+      </nav>
+
+      <div class="mobile-nav-actions">
+        <div class="mob-actions-heading">
+          <span class="mono-label">DIRECT CHANNELS</span>
+        </div>
+        <div class="mob-email-cards">
+          <a href="mailto:malikausaib07@gmail.com" class="mob-email-card">
+            <span class="mob-card-type">PERSONAL EMAIL</span>
+            <span class="mob-card-val">malikausaib07@gmail.com</span>
+          </a>
+          <a href="mailto:ma1533@srmist.edu.in" class="mob-email-card">
+            <span class="mob-card-type">STUDENT EMAIL (SRM KTR)</span>
+            <span class="mob-card-val">ma1533@srmist.edu.in</span>
+          </a>
+        </div>
+
+        <div class="mob-social-grid">
+          <a href="https://github.com/malikausaib" target="_blank" rel="noopener noreferrer" class="mob-social-btn">
+            <span>GITHUB</span>
+            <span>↗</span>
+          </a>
+          <a href="https://www.linkedin.com/in/malik-mohammad-ausaib-23ab72248/" target="_blank"
+            rel="noopener noreferrer" class="mob-social-btn">
+            <span>LINKEDIN</span>
+            <span>↗</span>
+          </a>
+          <a href="https://instagram.com/ausaib.malik" target="_blank" rel="noopener noreferrer" class="mob-social-btn">
+            <span>INSTAGRAM</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+        <div class="mob-status-bar">
+          <span>SRM KTR • CHENNAI</span>
+          <span class="mob-time-val" id="mob-live-time">--:--:-- IST</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <main>
     <!-- Section 00: The Editorial Cover / Masthead -->
@@ -89,10 +218,12 @@
             <div class="scratchpad-header">
               <span class="scratchpad-pin">📌</span>
               <span class="scratchpad-title">STUDENT LOG // TODAY</span>
-              <button class="scratchpad-cycle-btn" id="cycle-note-btn" title="Cycle through student thoughts">NEXT ↻</button>
+              <button class="scratchpad-cycle-btn" id="cycle-note-btn" title="Cycle through student thoughts">NEXT
+                ↻</button>
             </div>
             <p class="scratchpad-content" id="scratchpad-text">
-              "Currently in 3rd semester at SRM KTR. Untangling graph traversal recursion, surviving lab records, and building this website with zero bloated UI libraries."
+              "Currently in 3rd semester at SRM KTR. Untangling graph traversal recursion, surviving lab records, and
+              building this website with zero bloated UI libraries."
             </p>
             <div class="scratchpad-footer">
               <span class="scratchpad-meta">CLICK 'NEXT' TO CYCLE THOUGHTS</span>
@@ -115,8 +246,8 @@
 
           <div class="cover-sub-bar">
             <p class="cover-statement">
-              3rd semester computer science undergraduate at <em>SRM KTR</em>. 
-              Currently exploring data structures, system boundaries, and the tactile web. 
+              3rd semester computer science undergraduate at <em>SRM KTR</em>.
+              Currently exploring data structures, system boundaries, and the tactile web.
               Less corporate polish, more real curiosity.
             </p>
 
@@ -125,9 +256,9 @@
                 <span>CONNECT / DISPATCH</span>
                 <span class="arrow">→</span>
               </a>
-              <button class="btn-text-copy" id="quick-email-copy" data-email="malik.ausaib@srmktr.edu.in">
+              <button class="btn-text-copy" id="quick-email-copy" data-email="malikausaib07@gmail.com">
                 <span class="copy-label">COPY EMAIL</span>
-                <span class="mono-email">malik.ausaib@srmktr.edu.in</span>
+                <span class="mono-email">malikausaib07@gmail.com</span>
               </button>
             </div>
           </div>
@@ -161,7 +292,8 @@
             <em>Still figuring things out.</em>
           </h2>
           <p class="aside-caption">
-            No manufactured awards. No fake corporate titles. Just a genuine record of a student navigating engineering at SRM KTR.
+            No manufactured awards. No fake corporate titles. Just a genuine record of a student navigating engineering
+            at SRM KTR.
           </p>
 
           <div class="vital-specs">
@@ -186,15 +318,23 @@
 
         <div class="context-narrative">
           <div class="narrative-paragraph drop-cap-para">
-            I am a 3rd semester engineering student at SRM Institute of Science and Technology (Kattankulathur campus). University life is a whirlwind of lecture halls, lab sessions, late-night code runs, hostel debates, and tea stalls around Potheri and KTR.
+            I am a 3rd semester engineering student at SRM Institute of Science and Technology (Kattankulathur campus).
+            University life is a whirlwind of lecture halls, lab sessions, late-night code runs, hostel debates, and tea
+            stalls around Potheri and KTR.
           </div>
           <div class="narrative-paragraph">
-            Most portfolios try to pretend their author is a senior full-stack architect with twenty enterprise applications under their belt. I'd rather tell the truth: I'm in my foundational years. I spend my time digging through Data Structures and Algorithms in C++, understanding pointer arithmetic and memory layouts, tinkering with JavaScript DOM manipulation without frameworks, and trying to write software that is clean, readable, and intentional.
+            Most portfolios try to pretend their author is a senior full-stack architect with twenty enterprise
+            applications under their belt. I'd rather tell the truth: I'm in my foundational years. I spend my time
+            digging through Data Structures and Algorithms in C++, understanding pointer arithmetic and memory layouts,
+            tinkering with JavaScript DOM manipulation without frameworks, and trying to write software that is clean,
+            readable, and intentional.
           </div>
           <div class="narrative-paragraph highlight-box">
             <span class="box-icon">💡</span>
             <p>
-              <strong>My philosophy right now:</strong> Master the fundamentals before chasing hype. Understand how the memory works, understand why an algorithm runs in $O(N \log N)$ rather than $O(N^2)$, and build websites that respect user speed, accessibility, and typography.
+              <strong>My philosophy right now:</strong> Master the fundamentals before chasing hype. Understand how the
+              memory works, understand why an algorithm runs in $O(N \log N)$ rather than $O(N^2)$, and build websites
+              that respect user speed, accessibility, and typography.
             </p>
           </div>
         </div>
@@ -213,7 +353,8 @@
       <div class="ledger-intro">
         <h2 class="sub-editorial-title">Semester-by-semester field notes at SRM KTR.</h2>
         <p class="sub-editorial-desc">
-          How my understanding of computing is evolving from basic procedural syntax into real data structures and software systems.
+          How my understanding of computing is evolving from basic procedural syntax into real data structures and
+          software systems.
         </p>
       </div>
 
@@ -226,7 +367,8 @@
           </div>
           <div class="ledger-col-focus">
             <h3>Foundational Computation & Calculus</h3>
-            <p>Introduction to procedural problem solving in C, basic calculus, digital logic, and computing foundations. Figuring out the transition from high school to university life.</p>
+            <p>Introduction to procedural problem solving in C, basic calculus, digital logic, and computing
+              foundations. Figuring out the transition from high school to university life.</p>
           </div>
           <div class="ledger-col-artifacts">
             <span class="artifact-tag">C Basics</span>
@@ -243,7 +385,8 @@
           </div>
           <div class="ledger-col-focus">
             <h3>Object Paradigms & System Structures</h3>
-            <p>Object-oriented concepts, abstraction, inheritance, discrete mathematical structures, and the first taste of connecting software logic with interactive interfaces.</p>
+            <p>Object-oriented concepts, abstraction, inheritance, discrete mathematical structures, and the first taste
+              of connecting software logic with interactive interfaces.</p>
           </div>
           <div class="ledger-col-artifacts">
             <span class="artifact-tag">OOP Paradigms</span>
@@ -261,7 +404,9 @@
           </div>
           <div class="ledger-col-focus">
             <h3>Data Structures, Algorithms & Database Systems</h3>
-            <p>The core heart of computer science: arrays, linked lists, binary search trees, hash tables, graph traversals (BFS/DFS), algorithmic complexity, relational databases (SQL), and clean application architecture.</p>
+            <p>The core heart of computer science: arrays, linked lists, binary search trees, hash tables, graph
+              traversals (BFS/DFS), algorithmic complexity, relational databases (SQL), and clean application
+              architecture.</p>
           </div>
           <div class="ledger-col-artifacts">
             <span class="artifact-tag highlight">Data Structures & Algo</span>
@@ -278,7 +423,8 @@
           </div>
           <div class="ledger-col-focus">
             <h3>Systems, Networks & Real-world Exploration</h3>
-            <p>Operating systems internals, network protocols, collaborative hackathons, exploring open source repositories, and applying for internships.</p>
+            <p>Operating systems internals, network protocols, collaborative hackathons, exploring open source
+              repositories, and applying for internships.</p>
           </div>
           <div class="ledger-col-artifacts">
             <span class="artifact-tag">Operating Systems</span>
@@ -301,7 +447,8 @@
       <div class="archive-header-row">
         <div>
           <h2 class="sub-editorial-title">Selected Student Works & Experiments</h2>
-          <p class="sub-editorial-desc">Interactive tools, coursework projects, and digital experiments built during my 3 semesters at SRM KTR.</p>
+          <p class="sub-editorial-desc">Interactive tools, coursework projects, and digital experiments built during my
+            3 semesters at SRM KTR.</p>
         </div>
         <div class="archive-counter">
           <span class="count-num">04</span>
@@ -322,7 +469,9 @@
               </div>
               <h3 class="entry-title">SRM Student Resource Hub & Schedule Engine</h3>
               <p class="entry-brief">
-                A lightweight, no-nonsense utility for SRM KTR undergraduates. Unifies quick access to campus portals (Academia, EVarsity, Central Library) with an offline-first timetable organizer and syllabus check-off tracker.
+                A lightweight, no-nonsense utility for SRM KTR undergraduates. Unifies quick access to campus portals
+                (Academia, EVarsity, Central Library) with an offline-first timetable organizer and syllabus check-off
+                tracker.
               </p>
             </div>
             <div class="entry-col-tech">
@@ -341,11 +490,14 @@
             <div class="drawer-inner">
               <div class="drawer-block">
                 <h4>THE MOTIVATION</h4>
-                <p>Navigating different SRM portals between lectures on mobile networks was frustratingly slow. Built this lightweight single-file web tool to store timetable sessions locally and provide immediate 1-tap links without authentication timeouts.</p>
+                <p>Navigating different SRM portals between lectures on mobile networks was frustratingly slow. Built
+                  this lightweight single-file web tool to store timetable sessions locally and provide immediate 1-tap
+                  links without authentication timeouts.</p>
               </div>
               <div class="drawer-block">
                 <h4>WHAT I LEARNED</h4>
-                <p>Handling client-side persistence with LocalStorage, designing for mobile viewport constraints, and avoiding bulky third-party CSS dependencies.</p>
+                <p>Handling client-side persistence with LocalStorage, designing for mobile viewport constraints, and
+                  avoiding bulky third-party CSS dependencies.</p>
               </div>
             </div>
           </div>
@@ -362,7 +514,8 @@
               </div>
               <h3 class="entry-title">AlgoVisualizer: Interactive Sorting & Traversal</h3>
               <p class="entry-brief">
-                Visual demonstration sandbox built to explore how QuickSort, MergeSort, and Binary Search Trees operate step-by-step. Includes speed control, array comparison counters, and complexity breakdowns.
+                Visual demonstration sandbox built to explore how QuickSort, MergeSort, and Binary Search Trees operate
+                step-by-step. Includes speed control, array comparison counters, and complexity breakdowns.
               </p>
             </div>
             <div class="entry-col-tech">
@@ -381,11 +534,13 @@
             <div class="drawer-inner">
               <div class="drawer-block">
                 <h4>THE MOTIVATION</h4>
-                <p>Understanding recursion trees and partition logic in QuickSort was difficult purely through static blackboard diagrams in class. Building the visualizer helped lock in invariant states.</p>
+                <p>Understanding recursion trees and partition logic in QuickSort was difficult purely through static
+                  blackboard diagrams in class. Building the visualizer helped lock in invariant states.</p>
               </div>
               <div class="drawer-block">
                 <h4>WHAT I LEARNED</h4>
-                <p>Timing functions in asynchronous JavaScript, asynchronous step queues, and mapping algorithmic operations to HTML5 Canvas frame renders.</p>
+                <p>Timing functions in asynchronous JavaScript, asynchronous step queues, and mapping algorithmic
+                  operations to HTML5 Canvas frame renders.</p>
               </div>
             </div>
           </div>
@@ -402,7 +557,8 @@
               </div>
               <h3 class="entry-title">Semester Markdown Notes & Lab Assignment Tracker</h3>
               <p class="entry-brief">
-                A clean, distraction-free markdown scratchpad tailored for coding notes, code snippets, and weekly engineering assignment deadlines. Fast, offline, and keyboard-driven.
+                A clean, distraction-free markdown scratchpad tailored for coding notes, code snippets, and weekly
+                engineering assignment deadlines. Fast, offline, and keyboard-driven.
               </p>
             </div>
             <div class="entry-col-tech">
@@ -421,11 +577,13 @@
             <div class="drawer-inner">
               <div class="drawer-block">
                 <h4>THE MOTIVATION</h4>
-                <p>Commercial note apps are overloaded with bloat and slow load times. I needed something that opened in 50 milliseconds during laboratory sessions to paste code snippets.</p>
+                <p>Commercial note apps are overloaded with bloat and slow load times. I needed something that opened in
+                  50 milliseconds during laboratory sessions to paste code snippets.</p>
               </div>
               <div class="drawer-block">
                 <h4>WHAT I LEARNED</h4>
-                <p>Building custom regex-based markdown parsers, managing browser tab focus, and local file exports via JavaScript Blob API.</p>
+                <p>Building custom regex-based markdown parsers, managing browser tab focus, and local file exports via
+                  JavaScript Blob API.</p>
               </div>
             </div>
           </div>
@@ -442,7 +600,8 @@
               </div>
               <h3 class="entry-title">Malik's Corner of the Internet (Editorial Archive)</h3>
               <p class="entry-brief">
-                An intentional rejection of generic AI templates and cookie-cutter developer portfolios. Pure semantic HTML, architectural CSS layout, custom typography pairing, and tactile interactions.
+                An intentional rejection of generic AI templates and cookie-cutter developer portfolios. Pure semantic
+                HTML, architectural CSS layout, custom typography pairing, and tactile interactions.
               </p>
             </div>
             <div class="entry-col-tech">
@@ -461,11 +620,13 @@
             <div class="drawer-inner">
               <div class="drawer-block">
                 <h4>THE MOTIVATION</h4>
-                <p>To have an honest personal corner on the web that represents who I actually am as a 3rd semester student at SRM KTR, without the corporate veneer.</p>
+                <p>To have an honest personal corner on the web that represents who I actually am as a 3rd semester
+                  student at SRM KTR, without the corporate veneer.</p>
               </div>
               <div class="drawer-block">
                 <h4>WHAT I LEARNED</h4>
-                <p>High-contrast typographic hierarchy, accessible theme flipping, and designing personality-driven interfaces that load under 100ms.</p>
+                <p>High-contrast typographic hierarchy, accessible theme flipping, and designing personality-driven
+                  interfaces that load under 100ms.</p>
               </div>
             </div>
           </div>
@@ -486,12 +647,14 @@
         <div class="tools-intro">
           <h2 class="sub-editorial-title">Things I actually work with.</h2>
           <p class="sub-editorial-desc">
-            No "90% proficiency in C++" or fabricated metrics. Just an honest inventory of languages, concepts, and tools currently open in my editor.
+            No "90% proficiency in C++" or fabricated metrics. Just an honest inventory of languages, concepts, and
+            tools currently open in my editor.
           </p>
 
           <div class="student-quote-card">
             <span class="quote-tag">HONEST NOTE</span>
-            <p>"If someone in college says they're 95% master of C++, they've probably never seen template metaprogramming or the full standard library. I'm actively learning every week."</p>
+            <p>"If someone in college says they're 95% master of C++, they've probably never seen template
+              metaprogramming or the full standard library. I'm actively learning every week."</p>
           </div>
         </div>
 
@@ -505,19 +668,23 @@
             <div class="group-items">
               <div class="tech-row">
                 <span class="tech-name">C++</span>
-                <span class="tech-annotation">Primary language for Data Structures, Algorithms, and coursework problem solving.</span>
+                <span class="tech-annotation">Primary language for Data Structures, Algorithms, and coursework problem
+                  solving.</span>
               </div>
               <div class="tech-row">
                 <span class="tech-name">Python</span>
-                <span class="tech-annotation">Scripting, small utilities, quick logic prototypes, and exploring data.</span>
+                <span class="tech-annotation">Scripting, small utilities, quick logic prototypes, and exploring
+                  data.</span>
               </div>
               <div class="tech-row">
                 <span class="tech-name">JavaScript (ES6+)</span>
-                <span class="tech-annotation">Modern web behavior, DOM manipulation, asynchronous patterns, canvas logic.</span>
+                <span class="tech-annotation">Modern web behavior, DOM manipulation, asynchronous patterns, canvas
+                  logic.</span>
               </div>
               <div class="tech-row">
                 <span class="tech-name">C</span>
-                <span class="tech-annotation">First year foundation, pointers, memory allocation, and system level basics.</span>
+                <span class="tech-annotation">First year foundation, pointers, memory allocation, and system level
+                  basics.</span>
               </div>
             </div>
           </div>
@@ -531,7 +698,8 @@
             <div class="group-items">
               <div class="tech-row">
                 <span class="tech-name">Data Structures</span>
-                <span class="tech-annotation">Arrays, Linked Lists, Stacks, Queues, Binary Trees, Heaps, Hash Tables.</span>
+                <span class="tech-annotation">Arrays, Linked Lists, Stacks, Queues, Binary Trees, Heaps, Hash
+                  Tables.</span>
               </div>
               <div class="tech-row">
                 <span class="tech-name">Algorithm Analysis</span>
@@ -565,7 +733,8 @@
               </div>
               <div class="tech-row">
                 <span class="tech-name">Web Standards</span>
-                <span class="tech-annotation">Semantic HTML5, CSS Custom Properties, Grid/Flexbox, Accessible typography.</span>
+                <span class="tech-annotation">Semantic HTML5, CSS Custom Properties, Grid/Flexbox, Accessible
+                  typography.</span>
               </div>
             </div>
           </div>
@@ -588,7 +757,8 @@
             SAY <span class="accent-text">HELLO.</span>
           </h2>
           <p class="dispatch-subtitle">
-            Whether you are at SRM KTR, interested in collaborating on an academic project, hacking on ideas, or just want to discuss software and algorithms:
+            Whether you are at SRM KTR, interested in collaborating on an academic project, hacking on ideas, or just
+            want to discuss software and algorithms:
           </p>
         </div>
 
@@ -599,19 +769,37 @@
               <span class="mono-label">DIRECT COMMUNICATIONS</span>
             </div>
 
-            <!-- Email Box -->
+            <!-- Personal Email Box -->
             <div class="email-action-box">
-              <span class="box-label">STUDENT EMAIL:</span>
-              <a href="mailto:malik.ausaib@srmktr.edu.in" class="email-link" id="email-link-text">malik.ausaib@srmktr.edu.in</a>
-              <button class="btn-copy-tactile" id="copy-email-btn" title="Click to copy to clipboard">
-                <span id="copy-btn-label">COPY ADDRESS</span>
-                <span class="key-shortcut">[KEY: C]</span>
-              </button>
+              <span class="box-label">PERSONAL EMAIL:</span>
+              <a href="mailto:malikausaib07@gmail.com" class="email-link"
+                id="email-personal-link">malikausaib07@gmail.com</a>
+              <div class="email-btn-group">
+                <a href="mailto:malikausaib07@gmail.com" class="btn-direct-mail" title="Open mail app">SEND MAIL ↗</a>
+                <button class="btn-copy-tactile" data-copy="malikausaib07@gmail.com" id="copy-personal-btn"
+                  title="Click to copy personal email">
+                  <span class="copy-label">COPY</span>
+                  <span class="key-shortcut">[KEY: C]</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Student Email Box -->
+            <div class="email-action-box">
+              <span class="box-label">STUDENT EMAIL (SRM KTR):</span>
+              <a href="mailto:ma1533@srmist.edu.in" class="email-link" id="email-student-link">ma1533@srmist.edu.in</a>
+              <div class="email-btn-group">
+                <a href="mailto:ma1533@srmist.edu.in" class="btn-direct-mail" title="Open mail app">SEND MAIL ↗</a>
+                <button class="btn-copy-tactile" data-copy="ma1533@srmist.edu.in" id="copy-student-btn"
+                  title="Click to copy student email">
+                  <span class="copy-label">COPY</span>
+                </button>
+              </div>
             </div>
 
             <!-- Location & Campus Box -->
             <div class="campus-location-box">
-              <span class="box-label">LOCATION:</span>
+              <span class="box-label">ACADEMIC LOCATION:</span>
               <p class="campus-address">
                 SRM Institute of Science and Technology<br />
                 Kattankulathur Campus (SRM KTR)<br />
@@ -619,16 +807,23 @@
               </p>
             </div>
 
-            <!-- Social Links -->
+            <!-- Social Links (Exact Accounts Only) -->
             <div class="social-channels">
-              <span class="box-label">PROFILES & CODE:</span>
+              <span class="box-label">PROFILES & DIGITAL PRESENCE:</span>
               <div class="social-row">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-text-link">
+                <a href="https://github.com/malikausaib" target="_blank" rel="noopener noreferrer"
+                  class="social-text-link">
                   <span>GITHUB</span>
                   <span class="arrow-diag">↗</span>
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-text-link">
+                <a href="https://www.linkedin.com/in/malik-mohammad-ausaib-23ab72248/" target="_blank"
+                  rel="noopener noreferrer" class="social-text-link">
                   <span>LINKEDIN</span>
+                  <span class="arrow-diag">↗</span>
+                </a>
+                <a href="https://instagram.com/ausaib.malik" target="_blank" rel="noopener noreferrer"
+                  class="social-text-link">
+                  <span>INSTAGRAM (@ausaib.malik)</span>
                   <span class="arrow-diag">↗</span>
                 </a>
               </div>
@@ -655,12 +850,14 @@
 
               <div class="form-field">
                 <label for="form-subject">SUBJECT / TOPIC</label>
-                <input type="text" id="form-subject" name="subject" placeholder="Project, SRM KTR coursework, or just greeting" required />
+                <input type="text" id="form-subject" name="subject"
+                  placeholder="Project, SRM KTR coursework, or just greeting" required />
               </div>
 
               <div class="form-field">
                 <label for="form-message">MESSAGE NOTE</label>
-                <textarea id="form-message" name="message" rows="4" placeholder="Write your note here..." required></textarea>
+                <textarea id="form-message" name="message" rows="4" placeholder="Write your note here..."
+                  required></textarea>
               </div>
 
               <button type="submit" class="btn-submit-editorial" id="form-submit-btn">
@@ -686,12 +883,14 @@
 
       <div class="colophon-block">
         <span class="colophon-title">DESIGN & BUILD ETHOS</span>
-        <p class="colophon-desc">Handcrafted with semantic HTML5, custom CSS layout, and vanilla JavaScript. Zero frameworks, zero tracking scripts.</p>
+        <p class="colophon-desc">Handcrafted with semantic HTML5, custom CSS layout, and vanilla JavaScript. Zero
+          frameworks, zero tracking scripts.</p>
       </div>
 
       <div class="colophon-block text-right">
         <span class="colophon-title">KEYS</span>
-        <p class="colophon-desc"><kbd>T</kbd> to toggle theme • <kbd>C</kbd> to copy email • <kbd>ESC</kbd> close drawers</p>
+        <p class="colophon-desc"><kbd>T</kbd> theme • <kbd>M</kbd> view mode • <kbd>C</kbd> copy email • <kbd>ESC</kbd>
+          close</p>
       </div>
     </div>
     <div class="colophon-bottom">
@@ -708,4 +907,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>
