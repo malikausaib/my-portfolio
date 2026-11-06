@@ -2003,27 +2003,35 @@ kbd {
 /* Falling state — limbs flail */
 .scroll-character.is-falling .char-arm-l {
   animation: armFlailL 0.4s ease-in-out infinite alternate;
+  transform-origin: 22px 32px;
 }
 .scroll-character.is-falling .char-arm-r {
   animation: armFlailR 0.4s ease-in-out infinite alternate;
+  transform-origin: 38px 32px;
 }
 .scroll-character.is-falling .char-leg-l {
   animation: legFlailL 0.35s ease-in-out infinite alternate;
+  transform-origin: 26px 48px;
 }
 .scroll-character.is-falling .char-leg-r {
   animation: legFlailR 0.35s ease-in-out infinite alternate;
+  transform-origin: 34px 48px;
 }
 .scroll-character.is-falling .char-hand-l {
   animation: armFlailL 0.4s ease-in-out infinite alternate;
+  transform-origin: 22px 32px;
 }
 .scroll-character.is-falling .char-hand-r {
   animation: armFlailR 0.4s ease-in-out infinite alternate;
+  transform-origin: 38px 32px;
 }
 .scroll-character.is-falling .char-foot-l {
   animation: legFlailL 0.35s ease-in-out infinite alternate;
+  transform-origin: 26px 48px;
 }
 .scroll-character.is-falling .char-foot-r {
   animation: legFlailR 0.35s ease-in-out infinite alternate;
+  transform-origin: 34px 48px;
 }
 
 @keyframes armFlailL {
@@ -2047,34 +2055,42 @@ kbd {
 .scroll-character.is-hanging .char-arm-l {
   animation: none;
   transform: rotate(-70deg) translateY(-6px);
+  transform-origin: 22px 32px;
   transition: transform 0.35s var(--ease-snappy);
 }
 .scroll-character.is-hanging .char-arm-r {
   animation: none;
   transform: rotate(70deg) translateY(-6px);
+  transform-origin: 38px 32px;
   transition: transform 0.35s var(--ease-snappy);
 }
 .scroll-character.is-hanging .char-hand-l {
   animation: none;
   transform: rotate(-70deg) translateY(-6px);
+  transform-origin: 22px 32px;
   transition: transform 0.35s var(--ease-snappy);
 }
 .scroll-character.is-hanging .char-hand-r {
   animation: none;
   transform: rotate(70deg) translateY(-6px);
+  transform-origin: 38px 32px;
   transition: transform 0.35s var(--ease-snappy);
 }
 .scroll-character.is-hanging .char-leg-l {
   animation: dangleL 1.8s ease-in-out infinite alternate;
+  transform-origin: 26px 48px;
 }
 .scroll-character.is-hanging .char-leg-r {
   animation: dangleR 1.8s ease-in-out infinite alternate;
+  transform-origin: 34px 48px;
 }
 .scroll-character.is-hanging .char-foot-l {
   animation: dangleL 1.8s ease-in-out infinite alternate;
+  transform-origin: 26px 48px;
 }
 .scroll-character.is-hanging .char-foot-r {
   animation: dangleR 1.8s ease-in-out infinite alternate;
+  transform-origin: 34px 48px;
 }
 
 /* Subtle body swing while hanging */
